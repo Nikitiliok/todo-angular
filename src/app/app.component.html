@@ -18,16 +18,16 @@
       <app-todo
         *ngFor="let todo of todos; let i = index"
         [todo]="todo"
-        (deleteTodo)="onDeleteTodo(todo.id)"
-        (rename)="renameTodo(todo.id, $event)"
-        (toggle)="toggleTodo(todo.id)"
+        (deleteTodo)="onDeleteTodo(todo)"
+        (rename)="renameTodo(todo, $event)"
+        (toggle)="toggleTodo(todo)"
       >
       </app-todo>
     </section>
 
     <footer class="todoapp__footer">
       <span class="todoapp__active-count">
-        {{ activeTodos.length }} left
+        {{ (todos | incompletedTodos).length }} left
       </span>
 
       <nav class="filter">
@@ -59,14 +59,5 @@
     </footer>
   </div>
 
-  <article class="message is-danger message--hidden">
-    <div class="message-header">
-      <p>Error</p>
-      <button class="delete"></button>
-    </div>
-
-    <div class="message-body">
-      Unable to add a Todo
-    </div>
-  </article>
+  <app-message [title]="'Error'"></app-message>
 </div>
